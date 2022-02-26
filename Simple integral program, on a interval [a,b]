@@ -1,0 +1,80 @@
+#include <iostream>
+#include <cmath>
+// funcion para integral x^2 o cualguier funcion monotona en un intervalo []
+using namespace std;
+int a,b ;
+long double dx; 
+long double x_i;
+long double f ; // para la funcion x^2
+long double f_dx; // area de rectangulos 
+long double area; 
+long double i = 0; //contador para la integral
+long double e = 1; // Epsilon
+long double g = 1; // gamma
+int n = 1; //Primer contador
+int k = 1; // Segundo contador
+
+// INT_a^b (x^2), integral program
+
+long double c_epsilon(){ //Programa para buscar el epsilon de la computadora
+	
+	while(e + 1!= 1){
+		
+		
+		e = e/n;
+		n += 1;
+		
+	}
+	
+	if (e + 1 == 1){
+	
+		cout<< "Epsilon "<< e<< endl;
+	
+ 	}
+	
+}
+long double c_gamma(){ // Programa para buscar el ganma de la computadora
+
+		while(g + 1 != g){
+		
+		g = g *k;
+		k += 1;		
+	}
+	
+	
+	cout<< "Ganma"<< g << endl;		
+}
+
+int main(){
+	
+	c_epsilon();
+	c_gamma();
+	
+	cout<< "Ingrese a: \n"<<endl;// a del intervalo[a,b]
+	cin >> a;
+	
+	cout << "Ingrese b: \n "<<endl;// b del intervalo[a,b]	
+	cin >> b;	
+	dx = (b-a)/(g-10); // donde g es ganma (dx es para las divisiones )
+	// el -10 es porque no funcionaria con g solo ya que la computadora ve b-a/g = 0 si b-a es pequeno
+	while(i < g and dx > e and x_i < b){ //contador menor que ganma, dx mayor que epsilon
+	
+		x_i = a + i*((b-a)/(g-10));
+		f = pow(x_i,2);
+		//cout<< x_i <<endl;
+		f_dx = f*dx;
+		
+		i += pow(10,13); //aumento el contador
+		area= f_dx + area ;
+		
+		
+		//cout<< area <<endl;
+		
+	}
+	
+	cout<< "Area debajo de la curva: \n "<< area*(pow(10,13))  <<endl; //multiplico por la desviacion
+	
+	// nota: puede ser mas rapido si sutituimos el 13 por un numero mas grande como el 14 etc...
+	
+	return 0;
+}
